@@ -17,6 +17,9 @@ if ( !window.requestAnimationFrame ) {
 }
 
 function request_permission(){
+    alert("debug. In request_permission()");
+	
+	
     if (
         DeviceMotionEvent &&
         DeviceMotionEvent.requestPermission &&
