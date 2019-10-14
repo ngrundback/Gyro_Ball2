@@ -16,6 +16,25 @@ if ( !window.requestAnimationFrame ) {
  
 }
 
+function request_permission(){
+    if (
+        DeviceMotionEvent &&
+        DeviceMotionEvent.requestPermission &&
+        typeof DeviceMotionEvent.requestPermission === 'function'
+    ) {
+        DeviceMotionEvent.requestPermission();
+    }
+    if (
+        DeviceOrientationEvent &&
+        DeviceOrientationEvent.requestPermission &&
+        typeof DeviceOrientationEvent.requestPermission === 'function'
+    ) {
+        DeviceOrientationEvent.requestPermission();
+    }
+}
+
+
+
 function onClick() {
     // feature detect
     if (typeof DeviceOrientationEvent.requestPermission === 'function') {
@@ -38,6 +57,8 @@ var h;
 
 function init()
 {
+    request_permission();
+	
     ball = document.getElementById("ball");
 	 w = window.innerWidth;
      h = window.innerHeight;
