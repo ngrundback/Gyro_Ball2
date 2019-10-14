@@ -16,6 +16,20 @@ if ( !window.requestAnimationFrame ) {
  
 }
 
+function onClick() {
+    // feature detect
+    if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+      DeviceOrientationEvent.requestPermission()
+        .then(permissionState => {
+          if (permissionState === 'granted') {
+            window.addEventListener('deviceorientation', () => {});
+          }
+        })
+        .catch(console.error);
+    } else {
+      // handle regular non iOS 13+ devices
+    }
+  }
 
 
 var ball;
@@ -43,7 +57,7 @@ function init()
                                )
     }
     else {
-  	alert("Sorry, your browser doesn't support Device Orientation");
+  	alert("Sorry, your browser doesn't support Device Orientation. 2");
 	} ;
     
     update();
